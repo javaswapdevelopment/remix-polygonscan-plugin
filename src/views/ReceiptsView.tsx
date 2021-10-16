@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 import { Formik, ErrorMessage, Field } from "formik"
-import { getEtherScanApi, getNetworkName, getReceiptStatus } from "../utils"
+import { getPolygonScanApi, getNetworkName, getReceiptStatus } from "../utils"
 import { Receipt } from "../types"
 import { AppContext } from "../AppContext"
 import { SubmitButton } from "../components"
@@ -24,11 +24,11 @@ export const ReceiptsView: React.FC = () => {
         setResults("Cannot verify in the selected network")
         return
       }
-      const etherscanApi = getEtherScanApi(network)
+      const polygonscanApi = getPolygonScanApi(network)
       const result = await getReceiptStatus(
         values.receiptGuid,
         apiKey,
-        etherscanApi
+        polygonscanApi
       )
       setResults(result)
     } catch (error) {

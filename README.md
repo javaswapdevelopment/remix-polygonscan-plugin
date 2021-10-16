@@ -1,15 +1,15 @@
-# Remix Etherscan Plugin
+# Remix Polygonscan Plugin
 
-A plugin to verify contracts in Etherscan
+A plugin to verify contracts in Polygonscan
 
-[![CircleCI](https://circleci.com/gh/Machinalabs/remix-etherscan-plugin.svg?style=svg)](https://circleci.com/gh/Machinalabs/remix-etherscan-plugin)
+[![CircleCI](https://circleci.com/gh/javaswapdevelopment/remix-polygonscan-plugin.svg?style=svg)](https://circleci.com/gh/javaswapdevelopment/remix-polygonscan-plugin)
 
-Full documentation https://remix-etherscan-plugin.readthedocs.io/en/latest/
+Full documentation https://remix-polygonscan-plugin.readthedocs.io/en/latest/
 
 ### Install
 
 ```
-$ git clone git@github.com:Machinalabs/remix-etherscan-plugin.git
+$ git clone git@github.com:javaswapdevelopment/remix-polygonscan-plugin.git
 
 $ yarn
 

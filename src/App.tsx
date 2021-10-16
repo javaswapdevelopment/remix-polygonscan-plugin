@@ -13,7 +13,7 @@ import { Routes } from "./routes"
 
 import { useLocalStorage } from "./hooks/useLocalStorage"
 
-import { getReceiptStatus, getEtherScanApi, getNetworkName } from "./utils"
+import { getReceiptStatus, getPolygonScanApi, getNetworkName } from "./utils"
 import { Receipt, ThemeType } from "./types"
 
 import "./App.css"
@@ -43,13 +43,13 @@ const App = () => {
   contractsRef.current = contracts
 
   useEffect(() => {
-    console.log("Remix Etherscan loading...")
+    console.log("Remix Polygonscan loading...")
     const client = new PluginClient()
     createClient(client)
     const loadClient = async () => {
       await client.onload()
       setClientInstance(client)
-      console.log("Remix Etherscan Plugin has been loaded")
+      console.log("Remix Polygonscan Plugin has been loaded")
 
       client.on("solidity",
         "compilationFinished",
@@ -89,7 +89,7 @@ const App = () => {
     }
 
     const receiptsNotVerified: Receipt[] = receipts.filter((item: Receipt) => {
-      return item.status !== "Verified"
+      return item.status !== "Verified" && item.status !== "Unable to verify"
     })
 
     if (receiptsNotVerified.length > 0) {
@@ -105,7 +105,7 @@ const App = () => {
           const status = await getReceiptStatus(
             item.guid,
             apiKey,
-            getEtherScanApi(network)
+            getPolygonScanApi(network)
           )
           if (status === "Pass - Verified") {
             const newReceipts = receipts.map((currentReceipt: Receipt) => {
@@ -126,6 +126,27 @@ const App = () => {
               clearInterval(timer1)
             }
           }
+
+          if (status === "Fail - Unable to verify") {
+            const newReceipts = receipts.map((currentReceipt: Receipt) => {
+              if (currentReceipt.guid === item.guid) {
+                return {
+                  ...currentReceipt,
+                  status: "Unable to verify",
+                }
+              }
+              return currentReceipt
+            })
+
+            clearInterval(timer1)
+
+            setReceipts(newReceipts)
+
+            return () => {
+              clearInterval(timer1)
+            }
+          }
+          console.log(status);
         })
       }, 5000)
     }

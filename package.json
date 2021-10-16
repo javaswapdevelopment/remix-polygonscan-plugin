@@ -1,8 +1,8 @@
 {
-  "name": "remix-etherscan",
+  "name": "remix-polygonscan",
   "version": "0.1.0",
-  "description": "A plugin to verify contracts in Etherscan",
-  "author": "MachinaLabs",
+  "description": "A plugin to verify contracts in Polygonscan",
+  "author": "javaswapdevelopment",
   "dependencies": {
     "@remixproject/plugin": "^0.3.19",
     "@remixproject/plugin-api": "^0.3.19",
@@ -31,7 +31,7 @@
     "test:ci": "CI=true react-scripts test",
     "tslint": "tslint -c tslint.json src/**/*.{ts,tsx} --fix --format verbose",
     "check-formatting": "prettier --write --list-different './src/**/*.tsx'",
-    "deploy": "yarn build && surge --project ./build --domain machinalabs-remix-etherscan-plugin-v2.surge.sh"
+    "deploy": "yarn build && surge --project ./build --domain javaswapdevelopment-remix-polygonscan-plugin-v2.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"

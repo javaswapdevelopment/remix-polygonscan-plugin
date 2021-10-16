@@ -1,4 +1,4 @@
-site_name: Remix Etherscan
+site_name: Remix Polygonscan
 nav:
     - Home: index.md
 theme: readthedocs

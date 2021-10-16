@@ -2,10 +2,10 @@ import { PluginClient } from "@remixproject/plugin"
 import axios from 'axios'
 type RemixClient = PluginClient
 
-export const getEtherScanApi = (network: string) => {
-  return network === "main"
-    ? `https://api.etherscan.io/api`
-    : `https://api-${network}.etherscan.io/api`
+export const getPolygonScanApi = (network: string) => {
+  return network === "custom"
+    ? `https://api.polygonscan.com/api`
+    : `https://api-${network}.polygonscan.io/api`
 }
 
 export const getNetworkName = async (client: RemixClient) => {
@@ -21,11 +21,11 @@ export const getNetworkName = async (client: RemixClient) => {
 export const getReceiptStatus = async (
   receiptGuid: string,
   apiKey: string,
-  etherscanApi: string
+  polygonscanApi: string
 ) => {
   const params = `guid=${receiptGuid}&module=contract&action=checkverifystatus&apiKey=${apiKey}`
   try {
-    const response = await axios.get(`${etherscanApi}?${params}`)
+    const response = await axios.get(`${polygonscanApi}?${params}`)
     const { result } = response.data
     return result
   } catch (error) {

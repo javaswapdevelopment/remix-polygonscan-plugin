@@ -1,4 +1,4 @@
-export type ReceiptStatus = "Verified" | "Queue"
+export type ReceiptStatus = "Verified" | "Queue" | "Unable to verify"
 
 export interface Receipt {
   guid: string

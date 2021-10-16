@@ -5,7 +5,7 @@ import {
 } from "@remixproject/plugin"
 import { Formik, ErrorMessage, Field } from "formik"
 
-import { getNetworkName, getEtherScanApi, getReceiptStatus } from "../utils"
+import { getNetworkName, getPolygonScanApi, getReceiptStatus } from "../utils"
 import { SubmitButton } from "../components"
 import { Receipt } from "../types"
 import { CompilationResult } from "@remixproject/plugin-api"
@@ -93,7 +93,7 @@ export const VerifyView: React.FC<Props> = ({
       if (network === "vm") {
         return "Cannot verify in the selected network"
       }
-      const etherscanApi = getEtherScanApi(network)
+      const polygonscanApi = getPolygonScanApi(network)
 
       try {
         const contractMetadata = getContractMetadata(
@@ -131,7 +131,7 @@ export const VerifyView: React.FC<Props> = ({
           contractaddress: contractAddress, // Contract Address starts with 0x...
           sourceCode: JSON.stringify(jsonInput),
           contractname: fileName + ':' + contractName,
-          compilerversion: `v${contractMetadataParsed.compiler.version}`, // see http://etherscan.io/solcversions for list of support versions
+          compilerversion: `v${contractMetadataParsed.compiler.version}`, // see http://polygonscan.io/solcversions for list of support versions
           constructorArguements: contractArgumentsParam, // if applicable
         }
 
@@ -143,7 +143,7 @@ export const VerifyView: React.FC<Props> = ({
           type: "info",
           title: "Verifying ...",
         })
-        const response = await axios.post(etherscanApi, body)
+        const response = await axios.post(polygonscanApi, body)
         const { message, result, status } = await response.data
 
         if (message === "OK" && status === "1") {
@@ -151,7 +151,7 @@ export const VerifyView: React.FC<Props> = ({
           const receiptStatus = await getReceiptStatus(
             result,
             apiKey,
-            etherscanApi
+            polygonscanApi
           )
 
           onVerifiedContract({
