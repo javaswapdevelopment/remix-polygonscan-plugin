@@ -2,9 +2,7 @@
 
 A plugin to verify contracts in Polygonscan
 
-[![CircleCI](https://circleci.com/gh/javaswapdevelopment/remix-polygonscan-plugin.svg?style=svg)](https://circleci.com/gh/javaswapdevelopment/remix-polygonscan-plugin)
-
-Full documentation https://remix-polygonscan-plugin.readthedocs.io/en/latest/
+Forked from https://github.com/Machinalabs/remix-etherscan-plugin
 
 ### Install
 
@@ -19,10 +17,6 @@ $ yarn
 
 ```
 $ yarn start # start development project
-
-$ yarn deploy # deploy to surge
-
-$ yarn build # build production project
 
 ```
 
